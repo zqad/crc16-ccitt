@@ -1,0 +1,40 @@
+CRC-CCITT
+=========
+
+Simple CRC16-CCITT implementation written in C, both algorithmic and tabular
+implementations.
+
+Theory
+------
+
+CRC16-CCITT is a 16-bit CRC that is in use in the HDLC protocol. The notable
+features include a low complexity, and that it will yeild a 0 result when
+amended to the data (like most proper CRCs).
+
+Usage
+-----
+
+To use this implementation in your program, include one of the implementation
+header files:
+  #include <crc16-ccitt-algorithm.h>
+or:
+  #include <crc16-ccitt-table.h>
+
+Use the three functions:
+  uint16_t crc;
+  crc = crc16_ccitt_init();
+  crc = crc16_ccitt_update(data, crc);
+  ...
+  crc = crc16_ccitt_finalize(crc);
+
+The contents of crc is now the CRC for your data in native endian byte order.
+See the example.c for a version where the CRC is amended to the data in big
+endian byte order, which make the CRC of the compounded data 0x0000.
+
+If you are using crc16-ccitt-table.h, make sure that you include
+crc16-ccitt-table.o in your build. crc16-ccitt-table.c is generated using
+crc16-ccitt-generate-table, and is easily built:
+  $ make crc16-ccitt-table.c
+
+References
+- http://srecord.sourceforge.net/crc16-ccitt.html

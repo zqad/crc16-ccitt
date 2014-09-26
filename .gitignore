@@ -1,0 +1,6 @@
+.*.swp
+*~
+*.o
+crc16-ccitt-generate-table
+example
+crc16-ccitt-table.c

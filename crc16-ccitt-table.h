@@ -30,6 +30,15 @@ extern uint16_t crc16_ccitt_table[];
 
 static inline uint16_t crc16_ccitt_update(uint8_t byte, uint16_t crc) {
 
+	/* The data in the table constructed by running the algorithmic CRC
+	 * with inital CRC (crc & 0xFF00), and the input data 0x00. The
+	 * resulting CRC can be found in the table at (crc >> 8).
+	 *
+	 * Since the operation is performed on a zero rightmost half of the
+	 * CRC, and a zero input byte, we can construct the new CRC by usin
+	 * the rightmost half of the current CRC as the new leftmost half, and
+	 * the byte as the leftmost half. We then XOR this construction with
+	 * the contents of the table at position (crc >> 8). */
 	crc = ((crc << 8) | byte) ^ crc16_ccitt_table[crc >> 8];
 
 	return crc;

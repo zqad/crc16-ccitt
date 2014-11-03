@@ -34,7 +34,8 @@
  */
 
 int main(void) {
-	int i, j;
+	uint16_t i;
+	int j;
 	int xor_flag;
 	uint16_t result;
 

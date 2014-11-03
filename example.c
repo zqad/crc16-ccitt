@@ -54,7 +54,7 @@ int main(void) {
 		"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 		NULL
 	};
-	char temp_buffer[300];
+	uint8_t temp_buffer[300];
 
 	for (i = 0; testdata[i]; i++) {
 		printf("Data: '%s'\n", testdata[i]);
